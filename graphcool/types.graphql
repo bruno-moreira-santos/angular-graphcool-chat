@@ -8,6 +8,8 @@ type User @model {
   password: String!
   createdAt: DateTime!
   updatedAt: DateTime!
+  chats: [Chat!]! @relation(name: "UsersOnChats")
+  messages: [Message!]! @relation(name: "MessagesOnUser")
 }
 
 type Chat @model {
@@ -16,12 +18,14 @@ type Chat @model {
   isGroup: Boolean!
   createdAt: DateTime!
   updatedAt: DateTime!
+  users: [User!]! @relation(name: "UsersOnChats")
 }
 
 type Message @model {
   id: ID! @isGroup
   text: String!
   createdAt: DateTime!
+  sender: User! @relation(name: "MessagesOnUser")
 }
 
 type File @model {
