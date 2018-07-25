@@ -25,7 +25,7 @@ type Chat @model {
 }
 
 type Message @model {
-  id: ID! @isGroup
+  id: ID! @isUnique
   text: String!
   createdAt: DateTime!
   sender: User! @relation(name: "MessagesOnUser")
@@ -33,7 +33,7 @@ type Message @model {
 }
 
 type File @model {
-  id: ID! @isGroup
+  id: ID! @isUnique
   secret: String
   name: String
   size: Int
